@@ -1,0 +1,4 @@
+interface:
+  display_name: "Rive Animation"
+  short_description: "Create, rig, animate, and visually verify Rive assets"
+  default_prompt: "Use $rive-animation to create an editable Rive animation from this reference and verify its actual playback."
