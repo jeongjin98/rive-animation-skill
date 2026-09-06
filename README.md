@@ -6,6 +6,10 @@ Use it to help an AI agent preserve a reference illustration, build a character 
 
 **Works as a portable skill folder for Codex, Claude Code, and Cursor.** It follows the [Agent Skills format](https://agentskills.io/specification); it is not limited to Codex. Client discovery and invocation differ, and actual editing requires a separate Rive connection.
 
+## What to expect
+
+**This skill does not guarantee a perfect Rive animation on the first attempt.** Its main value is in refinement: it is designed to help the agent incorporate your revision requests more effectively, make targeted corrections, and preserve the parts you have already approved. Expect to review the result, give concrete feedback, and iterate.
+
 ## Quick start
 
 1. Clone this repository or choose **Code → Download ZIP**, extract it, and open a terminal in its root folder.
