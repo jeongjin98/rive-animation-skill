@@ -13,6 +13,20 @@ If menus or tools have changed, read the current documentation and call schema. 
 - Do not split static backgrounds and props into unnecessary pieces. Separate only what the motion requires.
 - Output: a still image, part list, style characteristics to preserve, and required range of motion.
 
+### Uncovered face and continuous silhouette
+
+- Inspect the head without hands, bottles, hair overlays, or other parts hiding the area under review. Restore temporary inspection changes afterward.
+- Establish the head, cheek, jaw, ear, and neck outline before placing fine facial features. Check tangent continuity around the nose and lips; accidental notches, protrusions, and stepped joins are artwork defects even when face scale is unchanged.
+- Keep eyes, brows, nose, mouth, and ear consistent with the same head direction and perspective. Preserve the reference's intentional asymmetry and stylization.
+- Compare neutral and expressive poses enlarged and at final display size. Moving the mouth cannot repair a malformed outer contour. Use a continuous path or well-designed overlaps as appropriate; do not require every face to be one path.
+
+### From stickman to final artwork
+
+- For a motion-first brief, validate timing, contact, and trajectories on the stickman before adding polished artwork.
+- Then add simple thick limbs and directional shoes/hands. Test joint volume and inner/outer contours at maximum bend, extension, and transition poses. An accepted line rig does not establish acceptable deformation of a full character.
+- Reassess deformation needs at this stage. Use actual bones and bindings when that is the agreed implementation; group names containing “bone” are not bone objects. Use rigid shapes where they work, with weighted or directly deformed connections where continuity requires them.
+- Preserve accepted joint positions, timing, and trajectories when replacing proxies. If changed proportions require motion changes, explain and recheck those changes instead of silently rebuilding the action.
+
 ## 2. Choose SVG or PSD
 
 Official: [SVG & Vector Assets](https://rive.app/docs/editor/assets/svg), [Photoshop Files](https://rive.app/docs/editor/assets/psd).
@@ -37,6 +51,14 @@ Official: [Transform Spaces](https://rive.app/docs/editor/fundamentals/transform
 - Production judgment: Separate scene movement, character movement, pelvis motion, and joint rotation so they can be controlled independently.
 - Test rotations at the shoulder, elbow, and knee pivots. Fix gaps between parts and unexpected transform inheritance first.
 - Output: a hierarchy and control list. Record whether targets are controlled in local or world space.
+
+### Clothes, wrists, and directional end parts
+
+- Place shoulder, elbow, wrist, ankle, and toe pivots at their visible anatomical joins. After moving a pivot or reparenting, compensate child transforms to preserve the reference pose and inspect existing animation.
+- Separate a sleeve's torso attachment from the part that bends with the arm. Rotating the whole sleeve with the upper arm can pull the shoulder seam away from the torso. Likewise, attach a sock to the appropriate lower-leg surface rather than blindly inheriting shoe rotation.
+- Check local joint angles and the resulting world-space direction together. A plausible hand or shoe rotation in isolation can become an excessive wrist or ankle bend after parent rotation.
+- Fix limb trajectory and parent-joint motion before forcing an endpoint with extreme wrist/ankle rotation. Weights do not correct a wrong pose.
+- Maintain joint volume without exposed circular caps or bulges. Inspect inner and outer contours at rest, mid-motion, and contact, including the return path; good contact and start poses can hide an unnatural lowering motion.
 
 ## 4. Choose a Deformation Method for Each Part
 

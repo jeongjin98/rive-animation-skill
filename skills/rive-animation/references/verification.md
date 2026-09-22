@@ -14,6 +14,13 @@ Read this when evaluating completion and inspecting visual quality. Apply only t
 
 Structural, visual, and runtime checks complement one another. Passing one does not make another pass. The skill provides verification instructions; the current environment must separately provide the tools needed to inspect rendered playback.
 
+## Match claims to the implementation
+
+- Before delivery, compare the agreed method with actual object types, hierarchy, bindings, and keys. Record any deviation from a proposed or promised method.
+- Claim bone weighting only after inspecting actual bones and bound targets/weights. Group parenting alone is a rigid rig; a script that draws a character is not automatically an editable bone/mesh rig.
+- Separate implementation failure from capability limits. Inspect available tools before saying Rive cannot perform an operation that the current asset simply does not implement.
+- “Playback works” establishes execution, “joints remain connected” establishes continuity, and “motion looks natural” needs inspection of pose, anatomy, force, timing, and intermediate transitions. Key counts and matching loop endpoints cannot substitute for these checks.
+
 ## Visual inspection
 
 1. Compare the reference and the current artwork in the same composition. Check silhouette, color, linework, texture, expression, and background.
@@ -24,6 +31,10 @@ Structural, visual, and runtime checks complement one another. Passing one does 
 6. Make changes in groups with distinguishable causes, then recheck the affected poses or intervals. Do not repeat unrelated checks that already passed without a reason.
 
 Inspect playback in the current editor first. If export or actual use is in scope, also play the exported `.riv` file. Do not present footage from another file or an earlier revision, or an arbitrary SVG rendering, as evidence of the current result.
+
+For character corrections, also inspect the unobstructed silhouette and intermediate poses in both movement directions. Compare before/after renders at matching time, scale, framing, and visibility so occlusion cannot conceal the reported defect. Restore hidden props and inspection-only changes before export. Use slow playback to diagnose joint transitions and normal-speed playback to assess action and rhythm.
+
+Keep a short revision record when multiple fixes depend on one another: defect → cause → changed structure/curves → affected poses → observed result. Recheck dependencies after later edits, such as grip/contact and liquid after wrist changes, clothing after reparenting, or face visibility after prop motion. Do not present a known unresolved defect as fixed because some other checks passed.
 
 ## Investigation by symptom
 

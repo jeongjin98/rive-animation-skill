@@ -73,6 +73,27 @@ The independent review identified an incomplete English verification record; thi
 
 The temporary copy check verifies file placement and integrity only. It does not verify discovery inside the clients. No live Rive editing, playback capture, export, or target-runtime execution was performed for this release.
 
+## Character revision update — 2026-09-22
+
+Reviewed prior run, swim, and drinking revision requests and their correction records. Recurring failures included treating playback as proof of natural motion, omitting thick-part deformation checks after a stickman, describing bone/weight work while implementing group transforms, overlooking a prop-covered face contour, incorrect clothing inheritance and endpoint angles, weak action cues, static bottle contents, and incomplete shadow fill coverage.
+
+The update turns those observations into scoped production and regression guidance. It also publishes the visual-reference precondition previously present only in the installed copy. No private conversation transcript, artwork, local path, or project identifier is included in the package.
+
+These are retrospective observations, not a forward test of the updated skill. No new Rive asset, live animation comparison, or client-discovery test was performed for this documentation update.
+
+Package checks: the skill validator passed; relative Markdown links resolved; UI metadata parsed and referenced the correct skill; whitespace checks passed. The distributable skill was checked for local user paths and source-project identifiers.
+
+### Reusable regression scenarios (not executed)
+
+| Scenario | Behavior to inspect |
+|---|---|
+| Accepted stickman run; final shoe folds toward the shin | Preserve accepted timing; test thick parts, relative ankle angle, heel path, and contours; verify floor movement separately |
+| Agent proposed weights but only group transforms exist | Inspect object types and bindings; complete the agreed work or disclose the deviation; never claim weighting from names alone |
+| Face seems correct only while a bottle covers it | Hide the occluder temporarily, inspect the head/neck outline before features, restore visibility, compare matched poses |
+| Sleeve detaches and wrist bends sharply on lowering | Inspect inheritance and pivots, adjust the arm chain, and check return transitions as well as mouth contact |
+| Drinking reads as body bobbing and contents stay rigid | Add suitable contact-timed cues and liquid redistribution; check clipping, settling, and dependencies on wrist curves |
+| Swim motion is accepted but effects feel static | Preserve the stroke; tie water response to propulsion and inspect shadow fill through folded poses |
+
 ## Remaining evidence needed
 
 - Run the installed English skill inside each claimed client with an actual Rive connection.

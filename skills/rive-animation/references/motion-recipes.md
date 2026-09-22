@@ -42,6 +42,30 @@ Inputs are artwork with separable or deformable parts, a floor, the movement mod
 
 For foot sliding, investigate contact and root/environment speed. For knee pops, check reach, bend direction, and interpolation. For elbow gaps, check pivots, hierarchy, overlap, and weight consistency across a continuous joint surface bound to the same bones. For occlusion errors, examine [Draw Order](https://rive.app/docs/editor/animate-mode/animating-draw-order) before dismantling the rig.
 
+## Run: Contact and Airborne Recovery
+
+- Inspect landing → compression → toe-off → flight/recovery on both legs. Track pelvis weight, knee fold, heel path, and shoe direction as one chain.
+- During recovery, check the relative shin/foot angle and calf → Achilles → heel contour. Independently keyed shoe angles can point back into the shin even when the endpoint follows a plausible path. Avoid prescribing one numeric angle for every reference.
+- Use directional shoes and thick lower legs during the proxy stage. Inspect slow playback for joint flips and normal-speed playback for rhythm and weight.
+- With a scrolling floor, match the stance foot to the near-ground movement; distant parallax may differ. Verify requested background motion in the rendered result, including tile resets, rather than assuming keys imply visible movement.
+
+## Swim: Propulsion Before Water Effects
+
+- Establish the requested stroke on a simple rig before polishing artwork. For breaststroke, distinguish arm catch/pull, forward recovery, heel recovery, kick, and glide; avoid making every limb oscillate at the same phase and speed.
+- Preserve an accepted stroke when replacing the stickman with artwork. Inspect shoulders, elbows, hips, and knees through folded and extended poses.
+- When water response is requested, connect ripples and trails to hand/foot paths and propulsion events. Let wakes stretch, spread, and decay with travel; repeated identical circles or uniform background drift may fail to communicate the stroke's force.
+- Tune flow and acceleration to the intended speed. Keep effects readable without obscuring the motion they are meant to support.
+- If a floor shadow is requested, inspect its projected silhouette throughout the stroke, including torso and clothing. Combined paths can cancel or leave holes because of winding/fill rules; verify actual fill coverage instead of relying on object counts.
+
+## Drinking: Contact, Swallowing, and Liquid
+
+- Stage reach/raise → mouth contact → sip/swallow → release/lower → settle. Preserve the grip and bottle-to-mouth contact during the sip, and inspect the uncovered face when the bottle moves away.
+- Coordinate upper arm, elbow, and wrist through raising and lowering. A correct sip pose does not justify a sharply folded resting wrist or a detached shoulder seam.
+- When the action lacks a drinking cue, add restrained, reference-appropriate swallowing motion, such as a brief throat/larynx rise and slower return during contact. Keep it distinct from general body movement and stop it after drinking. Do not exaggerate anatomy or require this detail in every style.
+- For visible liquid motion, separate the container and its contents. As the bottle tilts, liquid should redistribute toward its lower region with a roughly world-horizontal free surface, followed by small delayed slosh and settling; rotating a fixed colored patch with the bottle is insufficient.
+- Clip or construct liquid inside the inner bottle contour, including the neck and concave regions. Preserve approximate fill area unless the action intentionally consumes liquid. Inspect intermediate angles and return motion for leaks or interpolation artifacts.
+- Authored liquid keys are a valid approximation for a fixed action. Record their dependency on container geometry and parent rotation curves; regenerate/recheck them after those change. Do not call authored deformation a runtime fluid simulation. For changing runtime tilt, choose a supported dynamic approach and verify it in that runtime.
+
 ## Scene Loops with Backgrounds
 
 1. Define the overall composition and moving elements. Also specify which elements stay still.

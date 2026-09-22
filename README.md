@@ -4,6 +4,8 @@ An Agent Skill for creating, refining, and reviewing editable Rive animations: a
 
 Use it to help an AI agent preserve a reference illustration, build a character or scene animation, connect app behavior, and report what was actually verified.
 
+Production starts from an inspectable visual reference, including an existing asset being continued. Character guidance includes motion-first staging with thick deformation proxies, uncovered face review, clothing and joint continuity, action-specific run/swim/drinking checks, and comparison of promised rigging methods with the actual implementation.
+
 **Works as a portable skill folder for Codex, Claude Code, and Cursor.** It follows the [Agent Skills format](https://agentskills.io/specification); it is not limited to Codex. Client discovery and invocation differ, and actual editing requires a separate Rive connection.
 
 ## What to expect
@@ -116,7 +118,7 @@ The main file routes the agent to relevant references instead of loading every g
 
 ## Validation and limitations
 
-This is an initial instructional release. The original skill received static package checks and qualitative agent dry runs covering an existing walk cycle, an interactive icon, and a planning-only request. These checks do not establish an improvement in rendered animation quality.
+The original skill received static package checks and qualitative agent dry runs covering an existing walk cycle, an interactive icon, and a planning-only request. Later guidance incorporates recurring defects and corrections from character revision sessions. Neither those observations nor static checks establish an improvement in rendered animation quality from the revised skill.
 
 Client installation paths are based on official documentation, not an end-to-end run in every client. A valid skill folder does not guarantee that a client's Rive tools or playback facilities are available. Tool names, units, export access, and feature support can change; the live schema and target runtime documentation take precedence over the dated notes.
 
