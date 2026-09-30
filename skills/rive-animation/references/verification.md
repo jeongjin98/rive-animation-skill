@@ -38,11 +38,22 @@ For character corrections, also inspect the unobstructed silhouette and intermed
 
 Keep a short revision record when multiple fixes depend on one another: defect → cause → changed structure/curves → affected poses → observed result. Recheck dependencies after later edits, such as grip/contact and liquid after wrist changes, clothing after reparenting, or face visibility after prop motion. Do not present a known unresolved defect as fixed because some other checks passed.
 
+## Final occlusion and penetration pass
+
+Before handoff, inspect overlapping moving parts in the fully composed scene. For a walking character, track both hands/arms against sleeves, torso, hips, and legs through the entire stride, including the opposite half-cycle and loop boundary.
+
+- Establish which part is near/far and what should cover it at each crossing. A far hand may emerge outside the body's silhouette, but must not appear through an opaque surface that should cover it. Flag stray skin-colored fragments, detached-looking hands, and incorrect front/back swaps; not every visible far hand is an error.
+- Play at normal speed, then scrub slowly around every disappearance, reappearance, and crossing. Inspect just before, at, and after each event, not only authored keyframes. Require continuous, plausible visibility without brief flashes or popping.
+- Diagnose separately: wrong draw order; a limb trajectory passing through the body; missing artwork/coverage at a hem or joint; or deformation exposing an unintended region. Inspect the hierarchy, path, coverage, and bindings before choosing the repair. A still image identifies a suspect overlap, not its cause or behavior over time.
+- Repair the relevant ordering, trajectory, coverage, or deformation. Use deliberate clipping only where a real occluding boundary requires it. Do not permanently hide the far limb, shrink the hand, or toggle opacity merely to conceal the defect; preserve portions that should become visible. Any necessary order change must agree with the intended crossing and remain visually continuous.
+- Replay the affected interval and the full cycle after the repair, with normal layers restored. Check enlarged for small fragments and at delivery size for readability. Record the affected part/interval and observed result; unresolved unintended penetration or visibility popping means the visual check has not passed.
+
 ## Investigation by symptom
 
 | Symptom | Inspect first | Possible correction |
 |---|---|---|
 | Joint gaps | Pivots, parent transforms, overlap, draw order, and shared bone weights | Correct the hierarchy or pivots; calculate weights together for overlapping surfaces influenced by the same bones |
+| Far hand/limb appears through clothing or flashes during a crossing | Intended occluder, draw order, limb trajectory, coverage, and deformation before/during/after the event | Apply the [final occlusion pass](#final-occlusion-and-penetration-pass); repair the cause and replay the full cycle |
 | Person looks giant beside a vehicle or building | Relative dimensions at comparable depth, import bounds, assembly scale, ground contacts, and camera/projection | Correct scene scale or depth placement coherently; recheck contacts, shadows, and the full travel path |
 | Sliding feet | Ground contact, root motion, environment speed, and foot trajectories | Align the coordinate relationships and walking or environment speeds |
 | Whole-body wobble | Duplicate transforms and keys with identical phase | Separate the primary motion, reduce amplitude, and delay follow-through |

@@ -121,6 +121,14 @@ Regression scenarios for future execution: (1) a street walker appears giant bes
 
 Package checks passed: skill validator, 51 relative Markdown links including heading fragments, and Git whitespace checks. No animation playback was performed for this update.
 
+## Final occlusion check update — 2026-09-30
+
+A supplied still showed a skin-colored fragment near a walking character's garment hem; the user reported the far hand appearing through clothing during motion. The still alone does not establish whether draw order, trajectory, coverage, or deformation caused the issue. Added a final inspection pass that distinguishes those causes, checks both half-cycles and visibility transitions, and preserves legitimate emergence of the far limb. The image is not redistributed in this package.
+
+Regression scenarios for future execution: a far hand briefly appears over opaque clothing; a correctly ordered hand follows an implausible path through the torso; a far hand legitimately emerges beyond the silhouette. Inspect the event's neighboring frames and full playback, repair only the incorrect relationship, and verify that intentional visibility remains. No Rive file was inspected or modified, and no playback-based correction was verified in this update.
+
+Package checks passed: skill validator, 54 relative Markdown links including heading fragments, and Git whitespace checks.
+
 ## Remaining evidence needed
 
 - Run the installed English skill inside each claimed client with an actual Rive connection.

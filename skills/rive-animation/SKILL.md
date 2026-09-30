@@ -56,7 +56,7 @@ For precise features and APIs, follow the official links in the references. Use 
 3. **Prepare artwork and the rig.** Prepare necessary parts, occluded areas, pivots, and draw order. Choose rigid transforms, vector vertex deformation, or raster meshes per part. Test representative extreme poses.
 4. **Establish poses and timing.** Start with poses that communicate the action. Set weight, contact, and trajectories; refine interpolation; then add secondary motion for eyes, hair, clothes, and props. Handle small edits directly at the relevant stage.
 5. **Connect interaction and delivery requirements.** Define data contracts early and connect state transitions once motion is stable. Keep a simple loop simple. For app assets, check supported features and intended display size during production.
-6. **Play, inspect, and revise.** Review still poses and normal-speed playback. Separate structural, visual, and runtime checks. Fix the cause of a failure and replay the affected behavior. These checks are the agent's work, not mandatory user approval gates at every stage.
+6. **Play, inspect, and revise.** Review still poses and normal-speed playback. For overlapping moving parts, perform the [final occlusion and penetration pass](references/verification.md#final-occlusion-and-penetration-pass) before handoff. Separate structural, visual, and runtime checks. Fix the cause of a failure and replay the affected behavior. These checks are the agent's work, not mandatory user approval gates at every stage.
 
 ## Lessons from character revisions
 
