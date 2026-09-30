@@ -9,13 +9,19 @@ If menus or tools have changed, read the current documentation and call schema. 
 
 Read these before the applicable [human](human-motion.md), [object](object-motion.md), or [animal](animal-motion.md) guide. These are production judgments; preserve intentional stylization and separations in the reference.
 
-- Define what drives the action, what follows, and what stays attached or in contact. Record each relevant part's parent, pivot, rigid/deforming method, overlap, and front/back order in a compact part map. A control hierarchy need not match the layer draw order.
-- Separate parts where independent motion or deformation requires it; a logical body region need not become a separate image or bone. Reuse suitable existing parts. Provide hidden artwork and overlap for the full motion range, not just the rest pose.
-- Keep intended continuous surfaces closed through bends, extensions, crossings, and returns. No accidental background wedges, detached seams, exposed joint caps, or doubled outlines. Repair attachment, overlap, or deformation rather than hiding a gap with an unrelated foreground part.
-- Keep anchors in the correct space. A local action must not drag the whole parent assembly; a planted contact must follow its contacted surface until release. Avoid applying the same movement through both parent inheritance and independent keys.
-- Preserve rigid dimensions and joint connectivity. Permit squash/stretch only where the design calls for it; maintain the intended volume and recognizable markings on flexible parts.
-- For subjects sharing a scene, establish [scene scale and perspective](#scene-scale-and-perspective) before rigging; individually plausible assets can still form an implausible scene.
-- Test neutral, maximum bend/extension, an intermediate pose on each direction of travel, and any crossing/contact change. Then inspect actual playback for sliding, popping, delayed detachment, and loop continuity. A correct endpoint does not establish a correct transition.
+**Preserve spatial and structural consistency throughout motion.** Before rigging or keying, define which relationships must hold and which intentionally change, with their action phase or transition condition. Apply only relevant relationships; a compact note in the part map is sufficient. Judge assembled subjects and the full scene, not just independently moving parts.
+
+| Relationship | What must remain consistent |
+| --- | --- |
+| Attachment and continuity | Connected parts remain joined and intended continuous surfaces stay closed through bending and extension. No accidental gaps, detached seams, exposed joint caps, or doubled outlines. |
+| Depth and occlusion | Front/back order and visibility agree with the intended spatial arrangement. Overlap in a 2D projection is valid; appearing through a surface that should cover a part is not. Turns and crossings may deliberately change ordering. |
+| Shape and volume | Rigid dimensions remain stable; flexible parts preserve their intended volume, silhouette, and markings. Squash/stretch follows the reference rather than accidental inherited scale. |
+| Contact and separation | Required contacts follow their supporting surfaces until release; other parts keep appropriate clearance. Avoid unintended penetration or sliding. An intentional grasp, release, or landing changes the contact relationship. |
+| Scale and depth | Relative sizes, placement, projection, and apparent scale agree across the scene and through travel. Establish the [scene baseline](#scene-scale-and-perspective) before rigging. |
+
+- Record relevant parents, pivots, rigid/deforming methods, overlaps, and front/back order in the part map. Distinguish what drives, follows, or stays anchored. A control hierarchy need not match draw order; use the correct anchor space and avoid double-applying inherited movement.
+- Split only where independent motion or deformation requires it; reuse suitable parts and provide hidden artwork/overlap for the full range. A logical body region need not become a separate image or bone. Repair broken relationships at their cause rather than hiding them with unrelated foreground parts.
+- Check these relationships in neutral/extreme poses, intermediate poses in both directions, and immediately before/during/after intentional changes. Repeat the [final consistency pass](verification.md#final-spatial-and-structural-consistency-pass) in actual playback; correct endpoints do not establish a correct transition.
 
 ### Scene scale and perspective
 

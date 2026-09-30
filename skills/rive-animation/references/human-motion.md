@@ -30,4 +30,4 @@ Use the existing [clothing and endpoint checks](artwork-rigging.md#clothes-wrist
 
 For human idle, walk, run, swim, and drinking, continue with the matching section in [Motion recipes](motion-recipes.md). Those gait recipes describe biped motion; use [Animal motion](animal-motion.md) for quadrupeds. In every action, inspect the attachment and silhouette both with and without occluding arms/props, restoring visibility afterward.
 
-Before handoff, apply the [final occlusion and penetration pass](verification.md#final-occlusion-and-penetration-pass), especially to the far hand during arm swings. Inspect its full path against the torso, garment hem, and legs; a correct front arm does not establish correct visibility of the other arm.
+Before handoff, apply the [final spatial and structural consistency pass](verification.md#final-spatial-and-structural-consistency-pass) to the assembled character. For example, inspect the far hand's full path against the torso, garment hem, and legs; a correct front arm does not establish correct visibility of the other arm.

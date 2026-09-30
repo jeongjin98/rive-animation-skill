@@ -129,6 +129,14 @@ Regression scenarios for future execution: a far hand briefly appears over opaqu
 
 Package checks passed: skill validator, 54 relative Markdown links including heading fragments, and Git whitespace checks.
 
+## Relationship-based consistency update — 2026-09-30
+
+Reframed the shared rules and final review around five relationships: attachment, occlusion, shape/volume, contact/separation, and scale/depth. Production now defines preserved relationships and intentional changes before rigging/keying; final review checks the same criteria throughout motion and transitions. Hand penetration, waist gaps, foot sliding, and implausible scene scale remain examples rather than an exhaustive checklist.
+
+Document review checked that intentional releases, turns, perspective changes, and stylization remain allowed. No live Rive editing or playback was performed; behavioral and visual effectiveness remain unverified.
+
+Package checks passed: skill validator, 56 relative Markdown links including heading fragments, and Git whitespace checks.
+
 ## Remaining evidence needed
 
 - Run the installed English skill inside each claimed client with an actual Rive connection.

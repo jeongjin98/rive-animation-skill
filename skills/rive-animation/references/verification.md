@@ -38,22 +38,24 @@ For character corrections, also inspect the unobstructed silhouette and intermed
 
 Keep a short revision record when multiple fixes depend on one another: defect → cause → changed structure/curves → affected poses → observed result. Recheck dependencies after later edits, such as grip/contact and liquid after wrist changes, clothing after reparenting, or face visibility after prop motion. Do not present a known unresolved defect as fixed because some other checks passed.
 
-## Final occlusion and penetration pass
+## Final spatial and structural consistency pass
 
-Before handoff, inspect overlapping moving parts in the fully composed scene. For a walking character, track both hands/arms against sleeves, torso, hips, and legs through the entire stride, including the opposite half-cycle and loop boundary.
+Before handoff, verify the [shared motion relationships](artwork-rigging.md#shared-motion-invariants): attachment, occlusion, shape/volume, contact/separation, and scale/depth. Use the relationships defined before animation as the acceptance criteria. Apply them to the assembled subject and full scene throughout the action, not only to individual parts or endpoints.
 
-- Establish which part is near/far and what should cover it at each crossing. A far hand may emerge outside the body's silhouette, but must not appear through an opaque surface that should cover it. Flag stray skin-colored fragments, detached-looking hands, and incorrect front/back swaps; not every visible far hand is an error.
-- Play at normal speed, then scrub slowly around every disappearance, reappearance, and crossing. Inspect just before, at, and after each event, not only authored keyframes. Require continuous, plausible visibility without brief flashes or popping.
-- Diagnose separately: wrong draw order; a limb trajectory passing through the body; missing artwork/coverage at a hem or joint; or deformation exposing an unintended region. Inspect the hierarchy, path, coverage, and bindings before choosing the repair. A still image identifies a suspect overlap, not its cause or behavior over time.
-- Repair the relevant ordering, trajectory, coverage, or deformation. Use deliberate clipping only where a real occluding boundary requires it. Do not permanently hide the far limb, shrink the hand, or toggle opacity merely to conceal the defect; preserve portions that should become visible. Any necessary order change must agree with the intended crossing and remain visually continuous.
-- Replay the affected interval and the full cycle after the repair, with normal layers restored. Check enlarged for small fragments and at delivery size for readability. Record the affected part/interval and observed result; unresolved unintended penetration or visibility popping means the visual check has not passed.
+- Play the full action at normal speed, including both halves of cyclic motion, the loop boundary, and any requested entry/exit or state transition. Scrub vulnerable intervals and inspect immediately before/during/after changes in contact, direction, visibility, or depth, including frames between authored keys.
+- Distinguish intentional relationship changes from defects: releasing an object ends a grip; turning can change front/back order; approaching the camera can change apparent size. Each change must follow the intended action continuously, without unexplained jumps, flashes, detachment, or penetration. Preserve reference-specific stylization.
+- Identify which relationship failed before choosing a repair. Inspect hierarchy/pivots, trajectories, draw order/coverage, deformation/bindings, or scene placement as appropriate. A still image can reveal a suspect relationship but cannot establish its cause or behavior over time.
+- Fix the cause and replay the affected interval and complete action with normal layers restored. Use enlarged views for small defects and delivery size for readability. Do not hide, shrink, or fade parts merely to conceal an error; legitimate clipping must follow the intended occluding boundary.
+- Record the relationship, affected parts/interval, and observed result. Any unresolved unintended relationship failure means the relevant visual check has not passed, even if the animation plays successfully.
+
+Examples: a far hand must stay covered while behind opaque clothing but may emerge beyond the silhouette; a bending waist must stay connected; a walking foot must retain ground contact during stance; a person and vehicle must retain coherent relative scale and depth. These illustrate the shared criteria rather than limit the review to known defects.
 
 ## Investigation by symptom
 
 | Symptom | Inspect first | Possible correction |
 |---|---|---|
 | Joint gaps | Pivots, parent transforms, overlap, draw order, and shared bone weights | Correct the hierarchy or pivots; calculate weights together for overlapping surfaces influenced by the same bones |
-| Far hand/limb appears through clothing or flashes during a crossing | Intended occluder, draw order, limb trajectory, coverage, and deformation before/during/after the event | Apply the [final occlusion pass](#final-occlusion-and-penetration-pass); repair the cause and replay the full cycle |
+| Far hand/limb appears through clothing or flashes during a crossing | Intended occluder, draw order, limb trajectory, coverage, and deformation before/during/after the event | Apply the occlusion criterion in the [final consistency pass](#final-spatial-and-structural-consistency-pass); repair the cause and replay the full cycle |
 | Person looks giant beside a vehicle or building | Relative dimensions at comparable depth, import bounds, assembly scale, ground contacts, and camera/projection | Correct scene scale or depth placement coherently; recheck contacts, shadows, and the full travel path |
 | Sliding feet | Ground contact, root motion, environment speed, and foot trajectories | Align the coordinate relationships and walking or environment speeds |
 | Whole-body wobble | Duplicate transforms and keys with identical phase | Separate the primary motion, reduce amplitude, and delay follow-through |
