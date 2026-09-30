@@ -2,6 +2,8 @@
 
 Read this guide for timelines and scene motion. The sequences and numbers illustrate production decisions. No `.riv` asset verified through actual creation and playback is included. Adapt the examples to the reference and request.
 
+Before using a subject recipe, read the [shared motion invariants](artwork-rigging.md#shared-motion-invariants) and the matching [human](human-motion.md), [object](object-motion.md), or [animal](animal-motion.md) guide. The character walk/run recipes below describe bipeds; quadruped gait selection and contacts are in the animal guide.
+
 ## Common Workflow
 
 - First inspect the still image's composition, silhouette, and gaze. For a small change, modify only what is needed.

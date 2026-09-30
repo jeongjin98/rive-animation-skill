@@ -30,6 +30,8 @@ Structural, visual, and runtime checks complement one another. Passing one does 
 5. Test interactions with repeated or rapid input, interruption, the pointer leaving its target, extreme data values, and re-entry. Do not add conditions that do not apply.
 6. Make changes in groups with distinguishable causes, then recheck the affected poses or intervals. Do not repeat unrelated checks that already passed without a reason.
 
+Apply the relevant [human attachment/action](human-motion.md), [object motion-family](object-motion.md), or [animal contact/gait](animal-motion.md) checks. Include intermediate poses on both outward and return motion, not only the extremes. Check intended continuous surfaces against a contrasting inspection background when the scene obscures small gaps; restore the scene afterward.
+
 Inspect playback in the current editor first. If export or actual use is in scope, also play the exported `.riv` file. Do not present footage from another file or an earlier revision, or an arbitrary SVG rendering, as evidence of the current result.
 
 For character corrections, also inspect the unobstructed silhouette and intermediate poses in both movement directions. Compare before/after renders at matching time, scale, framing, and visibility so occlusion cannot conceal the reported defect. Restore hidden props and inspection-only changes before export. Use slow playback to diagnose joint transitions and normal-speed playback to assess action and rhythm.

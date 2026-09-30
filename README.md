@@ -6,6 +6,8 @@ Use it to help an AI agent preserve a reference illustration, build a character 
 
 Production starts from an inspectable visual reference, including an existing asset being continued. Character guidance includes motion-first staging with thick deformation proxies, uncovered face review, clothing and joint continuity, action-specific run/swim/drinking checks, and comparison of promised rigging methods with the actual implementation.
 
+Motion requests route through shared attachment/contact rules to the relevant human, object, or animal guide. Human guidance covers body parts and connected bends/reaches; objects are grouped by movement families; animals include quadruped walking/running gaits and other body structures.
+
 **Works as a portable skill folder for Codex, Claude Code, and Cursor.** It follows the [Agent Skills format](https://agentskills.io/specification); it is not limited to Codex. Client discovery and invocation differ, and actual editing requires a separate Rive connection.
 
 ## What to expect
@@ -109,6 +111,9 @@ Use the invocation syntax for your client, then add a request such as:
 |---|---|
 | [SKILL.md](skills/rive-animation/SKILL.md) | Scope, reference routing, production workflow, and completion criteria |
 | [Artwork and rigging](skills/rive-animation/references/artwork-rigging.md) | Parts, pivots, bones, vector/raster deformation, meshes, and IK |
+| [Human parts and motion](skills/rive-animation/references/human-motion.md) | Part attachments, arm raising, waist bends, turns, support, and grips |
+| [Object motion families](skills/rive-animation/references/object-motion.md) | Translation, rotation, rolling, articulation, swinging, deformation, impact, and flow |
+| [Animal parts and motion](skills/rive-animation/references/animal-motion.md) | Body structures, quadruped gaits, contacts, transitions, and other animal actions |
 | [Motion recipes](skills/rive-animation/references/motion-recipes.md) | Key poses, timing, walks, idles, scene motion, and an illustrative loop recipe |
 | [MCP operations](skills/rive-animation/references/mcp-operations.md) | Live file identity, property units, bounded edits, and tool limitations |
 | [Interaction and runtime](skills/rive-animation/references/interaction-runtime.md) | Data contracts, state machines, scripts, and platform handoff |

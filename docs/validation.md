@@ -94,6 +94,25 @@ Package checks: the skill validator passed; relative Markdown links resolved; UI
 | Drinking reads as body bobbing and contents stay rigid | Add suitable contact-timed cues and liquid redistribution; check clipping, settling, and dependencies on wrist curves |
 | Swim motion is accepted but effects feel static | Preserve the stroke; tie water response to propulsion and inspect shadow fill through folded poses |
 
+## Subject motion guide update — 2026-09-30
+
+Added shared attachment/contact invariants and request-based routing to human, object, and animal references. Human guidance covers connected body regions and action-specific defects. Objects are grouped by movement rather than an object catalog. Animals include quadruped gait contacts and other body structures/actions. Anatomy and equine gait sources inform scoped examples; they do not establish animation quality.
+
+Author review traced the following requests through the written routing and checked for conflicting instructions. This was a document review, not an independent agent run or Rive execution.
+
+| Request | Route and decision reviewed |
+| --- | --- |
+| Raise a person's arm, then lower it | Shared invariants → human guide → attachment/pivot checks; sleeve remains attached and intentional shoulder response is distinguished from accidental torso movement |
+| Bow deeply and return upright | Shared invariants → human waist-bend row; closed chest/pelvis coverage and intermediate return poses |
+| Roll an object with a flexible trailing part | Shared invariants → rolling + flexible object families; drive travel/contact first, then the attached trailing response |
+| Make a dog walk, then run | Shared invariants → animal guide; identify the gait, chart four-foot contacts, preserve species-specific running and handle the transition |
+| Animate a biped animal carrying a prop | Shared invariants → human action + animal anatomy + applicable object family; preserve grip and avoid imposing quadruped gait on a biped |
+| Plan an animal motion without a visual reference | Planning remains allowed; asset creation and editing still require an inspectable reference |
+
+Package checks passed: the skill validator, existing UI metadata parsing, 47 relative Markdown links including heading fragments, and Git whitespace checks. The validator's missing PyYAML dependency was installed only in a temporary directory; no runtime dependency was added to the skill.
+
+No new Rive asset, playback, export, or installed-client behavior was tested. The scenarios remain candidates for independent or live evaluation.
+
 ## Remaining evidence needed
 
 - Run the installed English skill inside each claimed client with an actual Rive connection.

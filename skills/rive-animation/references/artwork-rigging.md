@@ -5,6 +5,17 @@ This is a production decision guide. Its examples are not assets verified throug
 `Official` identifies documented features, `Tool` identifies observed API capabilities, and `Production judgment` identifies practical recommendations.
 If menus or tools have changed, read the current documentation and call schema. Do not invent unverified arguments or operations.
 
+## Shared motion invariants
+
+Read these before the applicable [human](human-motion.md), [object](object-motion.md), or [animal](animal-motion.md) guide. These are production judgments; preserve intentional stylization and separations in the reference.
+
+- Define what drives the action, what follows, and what stays attached or in contact. Record each relevant part's parent, pivot, rigid/deforming method, overlap, and front/back order in a compact part map. A control hierarchy need not match the layer draw order.
+- Separate parts where independent motion or deformation requires it; a logical body region need not become a separate image or bone. Reuse suitable existing parts. Provide hidden artwork and overlap for the full motion range, not just the rest pose.
+- Keep intended continuous surfaces closed through bends, extensions, crossings, and returns. No accidental background wedges, detached seams, exposed joint caps, or doubled outlines. Repair attachment, overlap, or deformation rather than hiding a gap with an unrelated foreground part.
+- Keep anchors in the correct space. A local action must not drag the whole parent assembly; a planted contact must follow its contacted surface until release. Avoid applying the same movement through both parent inheritance and independent keys.
+- Preserve rigid dimensions and joint connectivity. Permit squash/stretch only where the design calls for it; maintain the intended volume and recognizable markings on flexible parts.
+- Test neutral, maximum bend/extension, an intermediate pose on each direction of travel, and any crossing/contact change. Then inspect actual playback for sliding, popping, delayed detachment, and loop continuity. A correct endpoint does not establish a correct transition.
+
 ## 1. Prepare Artwork for Rigging
 
 - Production judgment: First identify the reference artwork, final display size, moving parts, and hidden areas.

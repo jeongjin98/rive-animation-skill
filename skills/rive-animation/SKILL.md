@@ -1,6 +1,6 @@
 ---
 name: rive-animation
-description: Use when creating, continuing, improving, or reviewing Rive animation assets, character rigs, scene loops, interactive motion, or Rive production plans. File-producing work requires a concrete visual style reference before execution.
+description: Use when creating, continuing, improving, or reviewing Rive animation assets, human or animal rigs and motion, object motion, scene loops, interactive motion, or Rive production plans. File-producing work requires a concrete visual style reference before execution.
 ---
 
 # Rive Animation
@@ -33,8 +33,13 @@ After a reference is available, identify the concrete traits to preserve—compo
 
 Read only the references needed for the current task.
 
+For any rig or subject-motion request, first read **Shared motion invariants** in [Artwork and rigging](references/artwork-rigging.md#shared-motion-invariants), then the matching subject guide below before choosing parts or keying motion. Route by the depicted body and requested action, even when the user never says “rigging.” For mixed scenes, combine only the relevant guides; an anthropomorphic animal can use human action guidance alongside its animal-specific anatomy.
+
 | Task | Reference |
 |---|---|
+| Human/humanoid action: raise an arm, bend, reach, walk, run, swim, drink | [Human parts and motion](references/human-motion.md) |
+| Object action: move, rotate, roll, swing, bend, compress, unfold, flow | [Object motion families](references/object-motion.md) |
+| Animal action: quadruped walk/run, jump, sit, flap, swim, slither | [Animal parts and motion](references/animal-motion.md) |
 | Inspect or modify the Rive editor | [MCP operations](references/mcp-operations.md) |
 | Prepare artwork, separate parts, set hierarchy/pivots, use bones/meshes/IK | [Artwork and rigging](references/artwork-rigging.md) |
 | Create keyframes, walks, idles, scene loops, or refine motion | [Motion recipes](references/motion-recipes.md) |
