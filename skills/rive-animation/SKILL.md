@@ -40,6 +40,7 @@ For any rig or subject-motion request, first read **Shared motion invariants** i
 | Human/humanoid action: raise an arm, bend, reach, walk, run, swim, drink | [Human parts and motion](references/human-motion.md) |
 | Object action: move, rotate, roll, swing, bend, compress, unfold, flow | [Object motion families](references/object-motion.md) |
 | Animal action: quadruped walk/run, jump, sit, flap, swim, slither | [Animal parts and motion](references/animal-motion.md) |
+| Multiple subjects or a subject in scenery: streets, vehicles, buildings, interiors | [Scene scale and perspective](references/artwork-rigging.md#scene-scale-and-perspective) before detailed rigging or animation |
 | Inspect or modify the Rive editor | [MCP operations](references/mcp-operations.md) |
 | Prepare artwork, separate parts, set hierarchy/pivots, use bones/meshes/IK | [Artwork and rigging](references/artwork-rigging.md) |
 | Create keyframes, walks, idles, scene loops, or refine motion | [Motion recipes](references/motion-recipes.md) |
@@ -50,7 +51,7 @@ For precise features and APIs, follow the official links in the references. Use 
 
 ## Production workflow
 
-1. **Define the brief and visual baseline.** Record the composition, silhouette, color, line, and texture to preserve. Capture the current render of an existing asset. For a scene, include the relationship between characters and background.
+1. **Define the brief and visual baseline.** Record the composition, silhouette, color, line, and texture to preserve. Capture the current render of an existing asset. For a scene, establish relative subject sizes, depth, ground contacts, and camera/projection using the scene-scale guide before detailed motion.
 2. **Inspect the current structure.** Before editing, inspect the actual file, artboard, hierarchy, timelines, rig, and data connections. Identify the specific objects and properties to change.
 3. **Prepare artwork and the rig.** Prepare necessary parts, occluded areas, pivots, and draw order. Choose rigid transforms, vector vertex deformation, or raster meshes per part. Test representative extreme poses.
 4. **Establish poses and timing.** Start with poses that communicate the action. Set weight, contact, and trajectories; refine interpolation; then add secondary motion for eyes, hair, clothes, and props. Handle small edits directly at the relevant stage.

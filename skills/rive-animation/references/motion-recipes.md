@@ -70,9 +70,9 @@ For foot sliding, investigate contact and root/environment speed. For knee pops,
 
 ## Scene Loops with Backgrounds
 
-1. Define the overall composition and moving elements. Also specify which elements stay still.
+1. Define the overall composition and moving elements. Also specify which elements stay still. Establish the [scene scale and perspective](artwork-rigging.md#scene-scale-and-perspective) baseline before detailed motion.
 2. Compose the foreground, middle ground, background, character, shadows, and occlusion. Distinguish effects on a single image from motion of individual elements.
-3. Complete the main action and check that character behavior and background speed/direction describe the same situation.
+3. Complete the main action and check that character behavior and background speed/direction describe the same situation. Keep relative sizes, contact placement, and occlusion consistent through depth changes; do not scale each asset independently to fill its available screen area.
 4. For repeating backgrounds, design adjoining tiles or hidden reset regions. The edge artwork must match as well as tile width and travel distance.
 5. Add secondary motion and compare occlusion, color, and shadows immediately before and after the loop boundary.
 

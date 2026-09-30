@@ -23,7 +23,7 @@ Structural, visual, and runtime checks complement one another. Passing one does 
 
 ## Visual inspection
 
-1. Compare the reference and the current artwork in the same composition. Check silhouette, color, linework, texture, expression, and background.
+1. Compare the reference and the current artwork in the same composition. Check silhouette, color, linework, texture, expression, and background. For scenes, inspect [relative size and perspective](artwork-rigging.md#scene-scale-and-perspective) with all major subjects visible, both in the initial still and through travel; isolated asset previews cannot establish scene coherence.
 2. Inspect key poses and maximum deformation for joint gaps, unintended movement of parts, stretched textures, occlusion, and clipping.
 3. Play at the intended size and normal speed. Inspect weight, ground contact, trajectories, anticipation, follow-through, and excessive oscillation. Do not judge timing from still captures.
 4. Watch loops several times, including the boundary. Check continuity of position, velocity, occlusion, background tiles, and shadows. For one-shot animations, inspect start, completion, and replay.
@@ -43,6 +43,7 @@ Keep a short revision record when multiple fixes depend on one another: defect â
 | Symptom | Inspect first | Possible correction |
 |---|---|---|
 | Joint gaps | Pivots, parent transforms, overlap, draw order, and shared bone weights | Correct the hierarchy or pivots; calculate weights together for overlapping surfaces influenced by the same bones |
+| Person looks giant beside a vehicle or building | Relative dimensions at comparable depth, import bounds, assembly scale, ground contacts, and camera/projection | Correct scene scale or depth placement coherently; recheck contacts, shadows, and the full travel path |
 | Sliding feet | Ground contact, root motion, environment speed, and foot trajectories | Align the coordinate relationships and walking or environment speeds |
 | Whole-body wobble | Duplicate transforms and keys with identical phase | Separate the primary motion, reduce amplitude, and delay follow-through |
 | A jump at the loop boundary | First and last values, velocity, draw order, and tile seams | Correct interpolation, boundary velocity, occlusion, or tile continuity |

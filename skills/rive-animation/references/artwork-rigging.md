@@ -14,7 +14,17 @@ Read these before the applicable [human](human-motion.md), [object](object-motio
 - Keep intended continuous surfaces closed through bends, extensions, crossings, and returns. No accidental background wedges, detached seams, exposed joint caps, or doubled outlines. Repair attachment, overlap, or deformation rather than hiding a gap with an unrelated foreground part.
 - Keep anchors in the correct space. A local action must not drag the whole parent assembly; a planted contact must follow its contacted surface until release. Avoid applying the same movement through both parent inheritance and independent keys.
 - Preserve rigid dimensions and joint connectivity. Permit squash/stretch only where the design calls for it; maintain the intended volume and recognizable markings on flexible parts.
+- For subjects sharing a scene, establish [scene scale and perspective](#scene-scale-and-perspective) before rigging; individually plausible assets can still form an implausible scene.
 - Test neutral, maximum bend/extension, an intermediate pose on each direction of travel, and any crossing/contact change. Then inspect actual playback for sliding, popping, delayed detachment, and loop continuity. A correct endpoint does not establish a correct transition.
+
+### Scene scale and perspective
+
+- Record a compact scene baseline: projection/camera, horizon and vanishing direction where applicable, ground plane, one familiar size reference, relative sizes, depth placement, and foot/wheel contact anchors. Use the supplied composition; preserve intentional stylization or orthographic/flat views rather than forcing realistic perspective.
+- Compare subjects at comparable depth before applying perspective. Check plausible proportions among people, vehicles, doors, furniture, and animals using the depicted types. A person beside a car must not read as a giant beside a toy. Compare appropriate dimensions: a person can be taller than a car's roof; “every car must be taller than every person” is not a valid rule.
+- Separate source image dimensions from scene size. Transparent padding, crop bounds, and import scale must not determine how large an object is in the world. Compose all major subjects together in a rough still before polishing their rigs.
+- In a perspective scene, apparent size must agree with relative size and depth. A nearby person can appear larger than a distant car, but ground placement, occlusion, and perspective must support that distance. Do not excuse an accidental mismatch by assigning depth that the composition does not show. Orthographic scenes retain scale with depth.
+- Place feet, tires, bases, and contact shadows on the intended ground surface. Align road edges, lane markings, building edges, and object orientations with a coherent viewpoint. Judge depth from the ground plane and camera, not screen Y alone; slopes and elevated surfaces need their own placement.
+- When motion changes depth, coordinate position, apparent scale, ground contact, occlusion, and projected speed. Sideways travel at constant depth should not grow or shrink without a camera/design reason. Recheck the complete scene at the start, middle, end, and nearest/farthest positions; repair placement or assembly scale before retuning the animation.
 
 ## 1. Prepare Artwork for Rigging
 

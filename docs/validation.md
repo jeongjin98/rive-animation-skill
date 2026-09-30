@@ -113,6 +113,14 @@ Package checks passed: the skill validator, existing UI metadata parsing, 47 rel
 
 No new Rive asset, playback, export, or installed-client behavior was tested. The scenarios remain candidates for independent or live evaluation.
 
+## Scene scale and perspective update — 2026-09-30
+
+Added a shared scene baseline and explicit routing before detailed rigging/animation. The guidance distinguishes relative world size from apparent size, accounts for import bounds and ground contacts, and checks depth changes through motion. It preserves intentional stylization and orthographic views rather than imposing perspective everywhere.
+
+Regression scenarios for future execution: (1) a street walker appears giant beside a car at comparable depth; inspect the assembled scene and correct scale/contact relationships before motion polish; (2) a foreground person appears larger than a distant car; preserve that valid relationship when depth cues support it; (3) a walker approaches the camera; coordinate apparent scale with ground position, contact, and occlusion throughout the path. These scenarios were reviewed as written guidance only; the user's scene was not inspected or modified.
+
+Package checks passed: skill validator, 51 relative Markdown links including heading fragments, and Git whitespace checks. No animation playback was performed for this update.
+
 ## Remaining evidence needed
 
 - Run the installed English skill inside each claimed client with an actual Rive connection.
