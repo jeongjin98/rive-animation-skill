@@ -1,8 +1,8 @@
 # Artwork Preparation and Rigging Decisions
 
-Reference date: 2026-09-06. This guide draws on the official Rive documentation and the `mesh_rigging_tool` schema available on that date.
+Reference date: 2026-09-06. This guide draws on the official Rive documentation; observed tool procedures are maintained in [MCP operations](mcp-operations.md#rigging-tools).
 This is a production decision guide. Its examples are not assets verified through creation, export, and playback.
-`Official` identifies documented features, `Tool` identifies observed API capabilities, and `Production judgment` identifies practical recommendations.
+`Official` identifies documented features and `Production judgment` identifies practical recommendations.
 If menus or tools have changed, read the current documentation and call schema. Do not invent unverified arguments or operations.
 
 ## Shared motion invariants
@@ -101,37 +101,16 @@ Official: [Bones](https://rive.app/docs/editor/manipulating-shapes/bones), [Mesh
 - Production judgment: Mix methods within a rig, such as rigid hands and shoes with weighted sleeves.
 - Choose based on the asset type and deformation requirements. Adding bones or meshes to every part is not the goal.
 
-## 5. Observed `mesh_rigging_tool` Call Sequence
+## 5. Weights and Seams Between Overlapping Parts
 
-Tool: Before use, check the live call schema, target IDs and types, and existing bindings. Prefer verified IDs over names.
-
-1. Vector path: use `bindBones` directly. `generateMesh` is unnecessary.
-2. Raster image: use `generateMesh` to create a deformable mesh, then apply `bindBones` to that target.
-3. Initial binding assigns automatic weights. Do not repeat `autoWeight` with the same settings by habit.
-4. Call `autoWeight` when settings or bone configurations change, or when overlapping parts need to be solved together.
-5. Use `querySkin` to inspect bound bones and a weight summary. Request per-vertex values only when needed.
-
-- Verify the `imageId` or `imageName` for `generateMesh` in the current file. Do not guess a target when no valid one is available.
-- At the reference date, `trace` defaults to true. Set it to false only when the user requests a plain rectangular mesh.
-- `detail` controls contour tracing; `subdivisions` controls interior density. Do not start with maximum density.
-- This tool does not support bone creation, bone animation, or per-vertex weight painting.
-- Check whether other available tools support the required operation in their current schemas. Do not invent calls from tool names.
-- Use UI alternatives through the UI tool's documented API and observed screen state. Do not substitute unsupported internal access.
-
-## 6. Weights and Seams Between Overlapping Parts
-
-Official: [Bones](https://rive.app/docs/editor/manipulating-shapes/bones). The shared weighting rule below comes from the observed tool description.
+Official: [Bones](https://rive.app/docs/editor/manipulating-shapes/bones). For binding order, joint weight solves, options, and tool limits, follow [MCP rigging operations](mcp-operations.md#rigging-tools).
 
 - Weights represent bone influence on a vertex and sum to 100%. Successful binding and natural deformation are separate results.
-- When overlapping parts bound to the same bones form a continuous joint surface, pass them together as `targetIds` in one `autoWeight` call.
-- The tool solves them as a single surface. Separate solves can produce different weights in the overlap and open a seam when the joint bends.
-- If targets have different bone sets, first confirm how they should connect. Do not include unrelated parts in a shared solve.
-- `blend` ranges from 0 to 1. Lower values are more rigid; higher values blend more broadly across boundaries. Higher is not always better.
-- `maxInfluences` allows up to 4 influences per vertex. Retest the joint and nearby parts after changing `smooth` or `blend`.
-- The official editor provides individual weight adjustment, locking, and Smooth. Do not assume this MCP tool exposes the same detailed controls.
-- Output: a bone-to-target map and test poses. Correct weight totals do not establish that folding, tearing, or volume loss is acceptable; inspect the render.
+- For overlapping parts that form a continuous surface, inspect whether their shared region deforms together through bending. A correct neutral overlap can still open a seam when weights differ.
+- After changing weights, inspect the joint and neighboring surfaces for folding, tearing, and volume loss; broader blending is not automatically better.
+- Output: a bone-to-target map and rendered test poses showing the joint and neighboring surfaces.
 
-## 7. Repair Mesh Structure
+## 6. Repair Mesh Structure
 
 Official: [Meshes](https://rive.app/docs/editor/manipulating-shapes/meshes), [Intro to meshes](https://rive.app/blog/intro-to-meshes).
 
@@ -141,7 +120,7 @@ Official: [Meshes](https://rive.app/docs/editor/manipulating-shapes/meshes), [In
 - Production judgment: Test a low-density mesh first and refine only where needed. Excessive density makes weight editing and diagnosis harder.
 - If automatic mesh generation cannot produce the required structure, check which edits the available UI supports.
 
-## 8. Choose FK, IK, and Constraints
+## 7. Choose FK, IK, and Constraints
 
 Official: [IK Constraint](https://rive.app/docs/editor/constraints/ik-constraint), [Transform Constraint](https://rive.app/docs/editor/constraints/transform-constraint).
 
@@ -153,7 +132,7 @@ Official: [IK Constraint](https://rive.app/docs/editor/constraints/ik-constraint
 - While a foot target should remain planted on the scene floor, check that it does not move with the character root.
 - If a target exceeds the chain's reach or the knee bends in the wrong direction, first correct the target path, chain, and bend direction.
 
-## 9. Reuse Poses with Joysticks
+## 8. Reuse Poses with Joysticks
 
 Official: [Joysticks](https://rive.app/docs/editor/manipulating-shapes/joysticks).
 
@@ -162,7 +141,7 @@ Official: [Joysticks](https://rive.app/docs/editor/manipulating-shapes/joysticks
 - If both axis timelines control the same property, they can conflict. Establish property ownership and the intended mixing first.
 - Production judgment: Test the center, axis endpoints, and all four corners. Good endpoint poses alone do not guarantee natural intermediate blends.
 
-## 10. Extreme Poses and Diagnostic Order
+## 9. Extreme Poses and Diagnostic Order
 
 | Symptom | Check first | Recheck after the fix |
 | --- | --- | --- |

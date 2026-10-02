@@ -156,6 +156,22 @@ Current official runtime overview, data-binding overview, and web parameter docu
 
 Package checks passed: skill validator, 60 relative Markdown links including heading fragments, and Git whitespace checks. The installed skill was backed up and updated; all 10 installed files matched the source bytes. This verifies copy consistency, not client discovery or runtime behavior.
 
+## Acceptance and verification reporting update — 2026-10-02
+
+Added task-specific observable acceptance checks and a required handoff record distinguishing PASS, FAIL, UNVERIFIED, and N/A. Consolidated visual inspection into one final pass while preserving intermediate poses, continuous playback, dependency rechecks, and restored inspection layers. Rigging call sequences/options now live in the MCP reference; mesh tracing is chosen from deformation and coverage needs while preserving explicit user choices.
+
+Two independent evaluator agents read the updated skill and relevant references, then answered three isolated handoff exercises using synthetic tool-record fixtures. One agent handled the normal and regression cases in separate turns; the other handled unavailable playback. The requests did not include the expected classifications or review findings.
+
+| Exercise and supplied evidence | Observed response |
+| --- | --- |
+| Editor-only ball loop: current structure, matched reference poses, contact/compression/recovery timing, and continuous playback records | Marked supported structure/visual checks PASS and export/runtime N/A; identified the missing real editor URL instead of claiming actual delivery |
+| Elbow repair: queried bindings/weights, a successful state simulation, an old screenshot, failed renderer recovery, and no export | Kept structure/logic PASS separate from visual, export, and runtime UNVERIFIED; rejected old imagery as evidence of the new revision and listed remaining work |
+| Drinking revision: wrist curve changed, old dependent liquid keys retained, and current playback records showing liquid outside the bottle | Kept the observed liquid defect FAIL despite other passing checks; identified the dependency to investigate and marked the post-repair recheck UNVERIFIED while editing was unavailable |
+
+The evaluators reported no decision-blocking ambiguity in these samples. These exercises test classification and reporting of supplied evidence, not actual inspection, defect detection, editing, or rendered quality. No live Rive connection, export, target runtime, or installed-client behavior was exercised; no no-skill comparison was run.
+
+Package checks passed: skill validator, UI metadata parsing/name consistency, 64 relative Markdown links including heading fragments, and Git whitespace checks. Validation reused a temporary PyYAML dependency; no dependency or test harness was added to the skill.
+
 ## Remaining evidence needed
 
 - Run the installed English skill inside each claimed client with an actual Rive connection.

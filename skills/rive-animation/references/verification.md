@@ -17,6 +17,20 @@ Structural, visual, and runtime checks complement one another. Passing one does 
 
 For nonvisual integration fixes, apply the affected [contract and lifecycle checks](interaction-runtime.md#initialization-failures-and-ownership). Report code/configuration inspection separately from executed app behavior; do not require a new style reference or claim a visual re-review when no visual authoring occurred.
 
+## Task-specific acceptance checks
+
+Before visual edits, derive a short set of checks from the requested action and inspectable reference. Record `expected behavior or preserved trait / observable failure signal / poses or intervals to inspect` in the brief or existing part map. Include the qualities the request depends on, such as silhouette, rhythm, weight, or expression, as well as the relevant [shared relationships](artwork-rigging.md#shared-motion-invariants). For a small correction, add only the defect-specific check and affected dependencies; reuse existing criteria.
+
+Examples to adapt, not requirements for every style:
+
+| Requested result | Observable pass condition | Inspect |
+|---|---|---|
+| A jump with a weighted landing | The intended contact, compression, and recovery phases read in sequence; planted feet retain contact until intentional release | Landing through recovery at normal speed; contact-change frames |
+| A drinking action | Grip and mouth contact hold during the sip; lowering preserves the shoulder seam and a continuous wrist trajectory | Raise, sip, and lower, including the return transition |
+| Preserve a reference expression and rhythm | Specified eye/mouth shapes and silhouette remain recognizable; the intended holds and accelerations remain distinct | Matched reference/current poses and full-speed action |
+
+Replace labels such as “natural” or “subtle” with the visible behavior intended for this task. Preserve intentional stylization; use numerical tolerances only when the brief or a technical constraint supplies a meaningful one. These criteria guide the agent's checks and do not create a new user-approval stage.
+
 ## Match claims to the implementation
 
 - Before delivery, compare the agreed method with actual object types, hierarchy, bindings, and keys. Record any deviation from a proposed or promised method.
@@ -24,34 +38,19 @@ For nonvisual integration fixes, apply the affected [contract and lifecycle chec
 - Separate implementation failure from capability limits. Inspect available tools before saying Rive cannot perform an operation that the current asset simply does not implement.
 - “Playback works” establishes execution, “joints remain connected” establishes continuity, and “motion looks natural” needs inspection of pose, anatomy, force, timing, and intermediate transitions. Key counts and matching loop endpoints cannot substitute for these checks.
 
-## Visual inspection
-
-1. Compare the reference and the current artwork in the same composition. Check silhouette, color, linework, texture, expression, and background. For scenes, inspect [relative size and perspective](artwork-rigging.md#scene-scale-and-perspective) with all major subjects visible, both in the initial still and through travel; isolated asset previews cannot establish scene coherence.
-2. Inspect key poses and maximum deformation for joint gaps, unintended movement of parts, stretched textures, occlusion, and clipping.
-3. Play at the intended size and normal speed. Inspect weight, ground contact, trajectories, anticipation, follow-through, and excessive oscillation. Do not judge timing from still captures.
-4. Watch loops several times, including the boundary. Check continuity of position, velocity, occlusion, background tiles, and shadows. For one-shot animations, inspect start, completion, and replay.
-5. Test interactions with repeated or rapid input, interruption, the pointer leaving its target, extreme data values, and re-entry. Do not add conditions that do not apply.
-6. Make changes in groups with distinguishable causes, then recheck the affected poses or intervals. Do not repeat unrelated checks that already passed without a reason.
-
-Apply the relevant [human attachment/action](human-motion.md), [object motion-family](object-motion.md), or [animal contact/gait](animal-motion.md) checks. Include intermediate poses on both outward and return motion, not only the extremes. Check intended continuous surfaces against a contrasting inspection background when the scene obscures small gaps; restore the scene afterward.
-
-Inspect playback in the current editor first. If export or actual use is in scope, also play the exported `.riv` file. Do not present footage from another file or an earlier revision, or an arbitrary SVG rendering, as evidence of the current result.
-
-For character corrections, also inspect the unobstructed silhouette and intermediate poses in both movement directions. Compare before/after renders at matching time, scale, framing, and visibility so occlusion cannot conceal the reported defect. Restore hidden props and inspection-only changes before export. Use slow playback to diagnose joint transitions and normal-speed playback to assess action and rhythm.
-
-Keep a short revision record when multiple fixes depend on one another: defect → cause → changed structure/curves → affected poses → observed result. Recheck dependencies after later edits, such as grip/contact and liquid after wrist changes, clothing after reparenting, or face visibility after prop motion. Do not present a known unresolved defect as fixed because some other checks passed.
-
 ## Final spatial and structural consistency pass
 
-Before handoff, verify the [shared motion relationships](artwork-rigging.md#shared-motion-invariants): attachment, occlusion, shape/volume, contact/separation, and scale/depth. Use the relationships defined before animation as the acceptance criteria. Apply them to the assembled subject and full scene throughout the action, not only to individual parts or endpoints.
+Before handoff of visual work, perform this pass against the task-specific checks and the five shared relationships: attachment, occlusion, shape/volume, contact/separation, and scale/depth. Apply the relevant [human](human-motion.md), [object](object-motion.md), or [animal](animal-motion.md) checks within this pass; they do not require duplicate playback runs.
 
-- Play the full action at normal speed, including both halves of cyclic motion, the loop boundary, and any requested entry/exit or state transition. Scrub vulnerable intervals and inspect immediately before/during/after changes in contact, direction, visibility, or depth, including frames between authored keys.
-- Distinguish intentional relationship changes from defects: releasing an object ends a grip; turning can change front/back order; approaching the camera can change apparent size. Each change must follow the intended action continuously, without unexplained jumps, flashes, detachment, or penetration. Preserve reference-specific stylization.
-- Identify which relationship failed before choosing a repair. Inspect hierarchy/pivots, trajectories, draw order/coverage, deformation/bindings, or scene placement as appropriate. A still image can reveal a suspect relationship but cannot establish its cause or behavior over time.
-- Fix the cause and replay the affected interval and complete action with normal layers restored. Use enlarged views for small defects and delivery size for readability. Do not hide, shrink, or fade parts merely to conceal an error; legitimate clipping must follow the intended occluding boundary.
-- Record the relationship, affected parts/interval, and observed result. Any unresolved unintended relationship failure means the relevant visual check has not passed, even if the animation plays successfully.
+1. **Compare the current result with the baseline.** Match composition, scale, framing, and pose/time where comparable. Check the specified silhouette, color, linework, texture, expression, and background. Inspect assembled subjects and the full scene for [relative size and perspective](artwork-rigging.md#scene-scale-and-perspective); isolated parts cannot establish scene coherence.
+2. **Inspect poses and transitions.** Check neutral and maximum-deformation poses, intermediate frames in both movement directions, and immediately before/during/after changes in contact, direction, visibility, or depth. Look for gaps, detachment, unintended movement, texture stretching, volume loss, clipping, and penetration. Use enlarged views, slow playback, or scrubbing for diagnosis. Temporarily hide occluders or use a contrasting background when needed, then restore all inspection-only changes before full-scene playback and export. For corrections, compare before/after at matching visibility so a prop cannot conceal the defect.
+3. **Play the complete action at delivery size and normal speed.** Assess the expected rhythm, weight, trajectories, anticipation, and follow-through. For loops, watch consecutive cycles and both half-cycles, including boundary position, velocity, occlusion, tiles, and shadows. For one-shots, inspect start, completion, and replay; include requested entry/exit and state transitions. Judge scale, contact, and depth throughout travel. Do not judge timing from stills.
+4. **Exercise applicable interaction and delivery paths.** Test repeated/rapid input, interruption, pointer exit, extreme data values, and re-entry where relevant. Inspect current editor playback first; if export or actual use is in scope, also play the exported `.riv` and perform the required target-runtime checks. Footage from another revision or an arbitrary SVG rendering is not evidence of this result.
+5. **Repair and recheck.** Identify the failed criterion and cause before changing hierarchy/pivots, trajectories, draw order/coverage, deformation/bindings, or scene placement. Change a distinguishable cause at a time, then replay the affected interval and complete action with normal layers restored. Recheck dependent fixes after later edits, such as grip and liquid after wrist changes or clothing after reparenting; do not repeat unrelated checks without a reason. Update the verification record with the affected parts/interval and observed result.
 
-Examples: a far hand must stay covered while behind opaque clothing but may emerge beyond the silhouette; a bending waist must stay connected; a walking foot must retain ground contact during stance; a person and vehicle must retain coherent relative scale and depth. These illustrate the shared criteria rather than limit the review to known defects.
+Intentional releases, turns, crossings, and depth changes can alter relationships. They must follow the intended action without unexplained jumps, flashes, detachment, or penetration. A far hand may emerge beyond a garment silhouette but must remain hidden while behind opaque clothing. Do not hide, shrink, or fade parts to conceal an error; legitimate clipping follows the intended occluding boundary.
+
+Any unresolved unintended relationship failure or unmet task-specific acceptance check is a failure of the relevant visual check, even if the animation plays successfully. A still image can reveal a defect but cannot establish its cause or behavior over time.
 
 ## Investigation by symptom
 
@@ -79,8 +78,15 @@ A `.rev` is an editable backup; a `.riv` is a runtime deliverable. After export,
 
 [Backup Export](https://rive.app/docs/editor/exporting/exporting-for-backup), [Runtime Export](https://rive.app/docs/editor/exporting/exporting-for-runtime)
 
-Example report format, not a claim that this work has been completed:
+## Verification record
 
-> Updated the walk and the bag's follow-through. Checked joints, ground contact, and the loop boundary in representative poses and repeated playback of the current file. The editable source and `.riv` are included. Playback in the target app remains unverified because its SDK information was not available.
+Every production or fix handoff must identify the inspected file/URL and revision (or saved snapshot), plus the inspection environment. Record each required check as `check / status / observed evidence / remaining issue or next check`. Cover the applicable structural, visual, export, and runtime checks, including task-specific acceptance checks. Concise bullets or a table are sufficient; no separate report file or video is required unless requested or needed to substantiate a claim.
 
-Report only checks that were actually performed. If access or export is blocked, confirm the current session and use supported recovery paths. If the same cause keeps producing failures and no new recovery path is available, finish work that can proceed independently, then record `completed scope / remaining work / blocked operation and cause / file to inspect next`. Do not mark animation quality as complete while visual inspection remains unverified.
+- **PASS:** The check was performed on the identified result and its acceptance condition was met. Name the observed pose/interval, input/result, comparison, or export-open result; “checked” alone is insufficient.
+- **FAIL:** An observed result violates the criterion. Identify the defect and affected scope; another passing check does not override it.
+- **UNVERIFIED:** A required check was not performed or the available evidence cannot establish its result. State the missing access/evidence and next check. An inaccessible renderer is not a pass or an exclusion.
+- **N/A:** The check is outside the requested scope. Give the reason when omitting a category that could otherwise be expected, such as runtime testing for an editor-only deliverable. Do not enumerate unrelated tests.
+
+Declare a requested scope complete only when all its required checks pass. Partial handoff is allowed: distinguish completed scope from failed or unverified scope. Planning and read-only reviews report findings and evidence limits, without claiming new production or inventing verification results.
+
+If access or export is blocked, confirm the current session and use supported recovery paths. If the same cause keeps producing failures and no new recovery path is available, finish independent work, then report the blocked operation/cause and the file/check to resume. Keep known defects as FAIL even when further playback becomes unavailable; mark any outstanding recheck UNVERIFIED.

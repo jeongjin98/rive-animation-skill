@@ -57,7 +57,7 @@ For precise features and APIs, follow the official links in the references. Use 
 
 Apply the stages relevant to the request; a nonvisual integration fix uses structure inspection, the runtime contract, and affected integration checks without inventing a new visual brief or rig.
 
-1. **Define the brief and visual baseline.** Record the composition, silhouette, color, line, and texture to preserve. Capture the current render of an existing asset. For a scene, establish relative subject sizes, depth, ground contacts, and camera/projection using the scene-scale guide before detailed motion.
+1. **Define the brief and visual baseline.** Record the composition, silhouette, color, line, and texture to preserve. Set [task-specific acceptance checks](references/verification.md#task-specific-acceptance-checks): expected behavior, observable failure signals, and the poses or intervals to inspect. Capture the current render of an existing asset. For a scene, establish relative subject sizes, depth, ground contacts, and camera/projection using the scene-scale guide before detailed motion.
 2. **Inspect the current structure.** Before editing, inspect the actual file, artboard, hierarchy, timelines, rig, and data connections. Identify the specific objects and properties to change.
 3. **Define relationships and prepare the rig.** Use the shared motion invariants to record required attachment, occlusion, shape, contact, and scale relationships, including intentional changes. Prepare necessary parts, hidden areas, pivots, and draw order; choose each part's deformation method. Test those relationships in representative poses before detailed motion.
 4. **Establish poses and timing.** Start with poses that communicate the action. Set weight, contact, and trajectories; refine interpolation; then add secondary motion for eyes, hair, clothes, and props. Handle small edits directly at the relevant stage.
@@ -74,6 +74,6 @@ Apply the stages relevant to the request; a nonvisual integration fix uses struc
 
 ## Completion report
 
-Provide result links and concise observed evidence appropriate to the request. When relevant, deliver the editable source or `.rev` backup, runtime `.riv`, actual playback preview, and data contract. Export and public sharing/deployment are separate actions; follow the user's authorization for each.
+Provide result links and the [verification record](references/verification.md#verification-record): identify the inspected file/revision and environment, and report each required check's status, observed evidence, and remaining issue. When relevant, deliver the editable source or `.rev` backup, runtime `.riv`, actual playback preview, and data contract. Export and public sharing/deployment are separate actions; follow the user's authorization for each.
 
-If actual playback was unavailable, visual quality remains unverified. If the target platform was not run, state the runtime verification limit. Finish independent work despite access problems and record the blocked operation and remaining checks. Do not present a design recipe as a produced and verified asset.
+Complete a requested scope only when its required checks pass. If actual playback was unavailable, visual quality remains unverified; if the target platform was not run, runtime behavior remains unverified. Finish independent work despite access problems and report completed and unverified scope separately. Planning and read-only reviews report findings and evidence limits without claiming asset production or verification.

@@ -18,7 +18,6 @@ When UI interaction is needed, reacquire the current app or tab through the host
 | Operation | What to verify |
 |---|---|
 | `set_property_values` and UI-style keyframe numbers | The observed tool uses percentage-style values for opacity, scale, trim, and constraint strength, and degrees for rotation. In this setter, 100% opacity is `100`. Inspect the property's allowed range; a percentage unit alone does not imply every property is capped at 100. |
-| `mesh_rigging_tool.autoWeight` | `blend` is a separate 0–1 value; `maxInfluences` allows up to 4. Do not convert every number to a percentage. |
 | Enums | Check the enum choices and accepted values in `query_property_keys`. Do not guess a display name or integer key. |
 | Error results | Check individual errors such as `unknown_id`, `type_mismatch`, `invalid_enum_value`, and `read_only`. A returned response does not mean every change succeeded. |
 
@@ -34,12 +33,20 @@ Keep runtime API units separate from editor MCP units. Recheck the schema and qu
 
 ## Rigging tools
 
-- For raster deformation, identify the image, then use `generateMesh` followed by `bindBones`. A vector path can use `bindBones` directly without mesh generation.
-- Initial binding also calculates automatic weights. Use `autoWeight` when settings or bones change, or when overlapping surfaces need to be recalculated together.
-- **When overlapping images or vectors form one joint surface and are bound to the same bones, include them together in one `autoWeight` call's `targetIds`.** Solving them separately can produce different weights in the overlap and a visible tear during bending. Do not combine unrelated parts.
-- Inspect the binding with `querySkin` and verify a rendered maximum bend. Request detailed vertex weights only for diagnosis.
-- This mesh tool does not create bones, animate them, or paint individual weights. Discover another available tool for those operations, or use supported editor UI controls.
-- Follow [Artwork and rigging](artwork-rigging.md) for artwork choices and further pose tests.
+Before using `mesh_rigging_tool`, check the live schema, target types, and existing bindings. Prefer verified IDs over names; verify `imageId` or `imageName` in the current file before generating a mesh.
+
+1. For raster deformation, use `generateMesh` followed by `bindBones`. A vector path uses `bindBones` directly without mesh generation.
+2. Initial binding calculates automatic weights. Use `autoWeight` when settings or bones change, or overlapping surfaces need a joint solve; do not repeat it with unchanged settings by habit.
+3. **When overlapping images or vectors form one continuous joint surface and are bound to the same bones, include them together in one `autoWeight` call's `targetIds`.** The tool solves them as one surface; separate solves can produce different overlap weights and a seam. Do not combine unrelated parts. For different bone sets, first resolve how the parts should connect.
+4. Use `querySkin` to inspect bound bones and a weight summary. Request per-vertex values only for diagnosis, then inspect the rendered bend using the [rig and pose checks](artwork-rigging.md#9-extreme-poses-and-diagnostic-order).
+
+Observed options; confirm their current contracts before use:
+
+- `trace` defaults to true. Use contour tracing when the mesh should follow the image silhouette; use false when a plain rectangular mesh meets the deformation and coverage needs. Preserve an explicit user choice and inspect clipping and deformation.
+- `detail` controls contour tracing; `subdivisions` controls interior density. Start with enough density for the required bends, not the maximum.
+- `blend` ranges from 0 to 1: lower values are more rigid; higher values blend more broadly. `maxInfluences` allows up to 4 influences per vertex. These are not percentage-style setter values. Retest the joint and nearby parts after changing `smooth` or `blend`.
+
+This tool does not create or animate bones or paint individual weights. The editor's weight adjustment, locking, and Smooth controls do not imply equivalent MCP operations. Check another available tool's current schema or use supported UI controls through their documented API and observed screen state; do not invent calls or substitute unsupported internal access.
 
 ## Listeners and data
 
