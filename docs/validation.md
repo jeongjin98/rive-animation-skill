@@ -137,6 +137,25 @@ Document review checked that intentional releases, turns, perspective changes, a
 
 Package checks passed: skill validator, 56 relative Markdown links including heading fragments, and Git whitespace checks.
 
+## Scoped runtime contract update — 2026-10-02
+
+Added public-interface preservation, semantic app controls, instance ownership, loading/failure handling, and lifecycle checks to the existing runtime reference. Integration-only requests route directly there. The visual-reference gate still applies to new assets and authored visual changes; nonvisual fixes for an identified existing asset can proceed without a separate style reference. No other skill is required or modified.
+
+Document review scenarios (not independent agent or live runtime tests):
+
+| Request | Decision reviewed |
+| --- | --- |
+| Fix a resource leak in an existing integration, with no screenshot | Inspect ownership and cleanup, handle teardown during load, test remount; do not require a visual brief |
+| Improve a character walk already controlled by an app | Require an inspectable visual baseline, preserve public names/types/meanings, and retain spatial/structural checks |
+| Rename a public property as part of an authorized migration | Inspect consumers and coordinate caller changes; avoid a duplicate contract or needless second approval |
+| Fix a missing binding but also change pose timing | Separate the nonvisual diagnosis from visual authoring; require a visual reference for timing changes |
+| Remount while an earlier asset load is still pending | Ignore stale completions, prevent duplicate subscriptions, and release only owned resources |
+| Produce a standalone loop | Keep the loop simple; do not impose app lifecycle architecture |
+
+Current official runtime overview, data-binding overview, and web parameter documentation were consulted for the integration boundary. No SDK-specific code, Rive asset, export, or target-runtime behavior was executed for this update.
+
+Package checks passed: skill validator, 60 relative Markdown links including heading fragments, and Git whitespace checks. The installed skill was backed up and updated; all 10 installed files matched the source bytes. This verifies copy consistency, not client discovery or runtime behavior.
+
 ## Remaining evidence needed
 
 - Run the installed English skill inside each claimed client with an actual Rive connection.

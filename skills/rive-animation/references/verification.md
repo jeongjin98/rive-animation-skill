@@ -11,8 +11,11 @@ Read this when evaluating completion and inspecting visual quality. Apply only t
 | Illustration style, joints, timing, and loops | Poses and continuous playback rendered by Rive with the current changes applied | Structural JSON, simulation traces, or a source preview from before the changes |
 | Export | Returned path, file existence and size, and opening the file in the intended format | Clicking Export or checking the extension |
 | App behavior | Loading the `.riv` in the target runtime and renderer, then checking inputs, sizing, and playback | Success only in the editor or playback in a different SDK |
+| Integration contract and lifecycle | Confirming the intended names/types/instances, then exercising affected loading, failure, repeat-input, and teardown/remount paths in the host app | A parsed schema or cleanup code that was never executed |
 
 Structural, visual, and runtime checks complement one another. Passing one does not make another pass. The skill provides verification instructions; the current environment must separately provide the tools needed to inspect rendered playback.
+
+For nonvisual integration fixes, apply the affected [contract and lifecycle checks](interaction-runtime.md#initialization-failures-and-ownership). Report code/configuration inspection separately from executed app behavior; do not require a new style reference or claim a visual re-review when no visual authoring occurred.
 
 ## Match claims to the implementation
 
@@ -70,7 +73,7 @@ Confirm the cause before changing the asset. Do not hide it by adding keys, subd
 - **Editable source:** The actual editor URL and a `.rev` backup when needed. Preserve the rigs, timelines, and parts that need to remain editable.
 - **Runtime file:** The app's `.riv`, together with any external image, font, or audio dependencies.
 - **Preview:** A capture or video of actual playback when requested or useful for review. Identify the file, revision, and inspection environment.
-- **Integration contract:** Required artboards, state machines, View Models, properties, initial values, units, directions, runtime and renderer, and any unverified scope.
+- **Integration contract:** The applicable [runtime handoff fields](interaction-runtime.md#app-integration-and-performance), including preserved or intentionally changed public names, data/instance ownership, failure behavior, cleanup, and unverified scope.
 
 A `.rev` is an editable backup; a `.riv` is a runtime deliverable. After export, verify that the file exists and is usable. Share publicly or deploy only when that is within the requested scope.
 

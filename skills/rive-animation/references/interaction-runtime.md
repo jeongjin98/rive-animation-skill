@@ -2,6 +2,8 @@
 
 Read this when building assets that respond to data or preparing them for app integration. This design reference is based on documentation reviewed on 2026-09-06. Check the target platform's current documentation for exact APIs and feature support.
 
+Use only the sections needed for the change. A visual loop does not require a new app architecture; a loading or cleanup fix does not require a new character rig. Contract and lifecycle guidance was extended on 2026-10-02; exact APIs still come from the current target-runtime documentation.
+
 ## Data contracts
 
 For external control in new work, consider View Models and Data Binding first. Check the legacy guidance for existing State Machine Inputs and runtime Rive Events. For a small change that preserves existing behavior, assess only the necessary scope; do not add a product-wide migration.
@@ -9,6 +11,10 @@ For external control in new work, consider View Models and Data Binding first. C
 [Data Binding](https://rive.app/docs/editor/data-binding/overview), [Inputs guidance](https://rive.app/docs/editor/state-machine/inputs), [Migration Guide](https://rive.app/docs/editor/data-binding/migration-guide)
 
 For each property, record its name, type, initial value, unit or range, owner of changes, and direction of data flow. Also define how to handle delayed initial data, cancellation, retries, repeated input, and the connection to the View Model instance.
+
+- Treat names consumed by the app as a public interface: artboards, state machines, View Models, properties/enum values, and externally resolved assets or components. Preserve their names, types, ranges, defaults, and meanings during visual revisions. Inspect actual consumers before renaming; an authorized breaking change needs coordinated caller updates and a stated migration, not a silent replacement or duplicate schema.
+- For new control surfaces, expose user/app intent such as `activity`, `progress`, or `accentColor`. Let the rig translate that intent into poses and transforms; do not make routine app logic address individual bones or internal groups. Preserve intentional existing low-level integrations unless changing them is in scope.
+- Distinguish durable state from one-shot actions and document whether repeated actions restart, queue, or are ignored. Assign ownership to prevent feedback loops; keep unrelated component instances from unintentionally sharing mutable state. Verify instance selection as well as property names.
 
 Example contract for a progress indicator; match the actual names to the app:
 
@@ -57,6 +63,26 @@ MCP tools that control the editor and Luau Scripting that runs inside an asset s
 
 Identify the target platform, SDK version, and renderer from the existing code or specification. If these are unknown, continue work that does not depend on them while asking for the missing information. Do not report support for a platform you have not verified.
 
+### Initialization, failures, and ownership
+
+Use the target runtime's documented lifecycle and existing app conventions. The rules below are production guidance, not a universal SDK call sequence; see the [runtime guides](https://rive.app/docs/runtimes/getting-started) and, for web-specific loading and cleanup, [Rive Parameters](https://rive.app/docs/runtimes/web/rive-parameters).
+
+- Identify who owns the loaded file, playback instance, data instance, and subscriptions. Reuse shareable file resources where supported, while keeping independently controlled playback/data separate. Avoid recreation on unrelated UI updates; do not dispose a shared resource while another owner uses it.
+- Resolve the intended artboard/controller and data instance, validate required properties, and apply app-owned initial values before interactive playback when supported. Otherwise keep a deliberate loading state until ready. Do not briefly display misleading defaults or overwrite restored state on every render.
+- Define observable outcomes for the failures relevant to the change:
+
+| Condition | Expected response |
+| --- | --- |
+| File or required external asset fails to load | Report the failure and show the intended error/fallback state; a blank surface is not successful loading. |
+| Required name, type, or enum value does not match | Report expected versus observed contract and stop the affected setup; do not silently select the first available item. |
+| Data arrives late or the asset is replaced mid-load | Wait for readiness and ignore stale completions; do not write to missing or disposed instances. |
+| A feature is unsupported by the target renderer/runtime | Identify the unsupported requirement and a compatible fallback within the requested scope; editor playback is insufficient evidence. |
+
+- Pair every subscription with removal and release owned playback/resources when their host lifetime ends, using the SDK's ownership rules. Guard pending callbacks after teardown; pause/resume inactive content where appropriate. A retry or remount must not add duplicate listeners or restart unrelated shared instances.
+- For a lifecycle fix, check mount → load → interact → unmount → remount, plus teardown during loading. For a contract fix, check defaults, a mismatch, and affected repeated/reversed input. Verify the relevant path on the target runtime; do not require every platform for a single-platform change.
+
+### Display and performance checks
+
 1. Check the features in use against [Feature Support](https://rive.app/docs/feature-support) and the [runtime documentation](https://rive.app/docs/runtimes/getting-started). Successfully loading a file in an older SDK does not establish support for newer features.
 2. At the actual display size, inspect image resolution, vector vertex counts, mesh density, and the number of active animations. Look for excessive vertices in automatically traced vectors and oversized raster images.
 3. Define which assets are embedded or loaded externally and the required font glyph coverage. Verify that the actual export includes the necessary artboards, components, and assets. Do not combine export rules from different versions by assumption.
@@ -65,4 +91,4 @@ Identify the target platform, SDK version, and renderer from the existing code o
 
 [Best Practices](https://rive.app/docs/getting-started/best-practices), [Reduced Motion](https://rive.app/docs/editor/accessibility/reduced-motion), [Semantics](https://rive.app/docs/editor/accessibility/semantics)
 
-The handoff contract includes the file or editor URL; artboard, state machine, and View Model names; property initial values, types, and directions; assets; display size and fit; runtime and renderer; and verification results. Do not automatically include an SDK migration or deployment that was not requested.
+The handoff contract includes the file or editor URL; artboard, state machine, and View Model names/instance selection; property initial values, types, ranges, meanings, ownership, and directions; trigger repeat behavior; external assets and loading/fallback responsibilities; resource cleanup ownership; display size and fit; runtime and renderer; and verification results. Note any authorized breaking changes and remaining caller migration. Include only applicable fields; do not automatically add an SDK migration or deployment.

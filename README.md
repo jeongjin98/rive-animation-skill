@@ -4,9 +4,11 @@ An Agent Skill for creating, refining, and reviewing editable Rive animations: a
 
 Use it to help an AI agent preserve a reference illustration, build a character or scene animation, connect app behavior, and report what was actually verified.
 
-Production starts from an inspectable visual reference, including an existing asset being continued. Character guidance includes motion-first staging with thick deformation proxies, uncovered face review, clothing and joint continuity, action-specific run/swim/drinking checks, and comparison of promised rigging methods with the actual implementation.
+Visual production starts from an inspectable visual reference, including an existing asset being continued. Nonvisual integration fixes for an identified existing asset can proceed without a separate style reference; changes to its visual behavior still require one. Character guidance includes motion-first staging with thick deformation proxies, uncovered face review, clothing and joint continuity, action-specific run/swim/drinking checks, and comparison of promised rigging methods with the actual implementation.
 
 Motion requests route through shared attachment/contact rules to the relevant human, object, or animal guide. Human guidance covers body parts and connected bends/reaches; objects are grouped by movement families; animals include quadruped walking/running gaits and other body structures.
+
+App handoff guidance preserves public names and semantic controls, with scoped checks for initialization, failures, and resource ownership. These references remain optional for artwork-only work.
 
 **Works as a portable skill folder for Codex, Claude Code, and Cursor.** It follows the [Agent Skills format](https://agentskills.io/specification); it is not limited to Codex. Client discovery and invocation differ, and actual editing requires a separate Rive connection.
 
@@ -21,7 +23,7 @@ Motion requests route through shared attachment/contact rules to the relevant hu
 1. Clone this repository or choose **Code → Download ZIP**, extract it, and open a terminal in its root folder.
 2. Install the skill for one client using the instructions below.
 3. For editing, open the intended file in Rive and connect the client to the editor.
-4. Invoke `rive-animation` with a reference and a concrete request.
+4. Invoke `rive-animation` with a concrete request and, for visual production, an inspectable reference.
 
 To clone with Git:
 
